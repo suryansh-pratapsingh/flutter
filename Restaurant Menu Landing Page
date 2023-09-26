@@ -1,0 +1,109 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(RestaurantMenuApp());
+}
+
+class RestaurantMenuApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: RestaurantMenuPage(),
+    );
+  }
+}
+
+class RestaurantMenuPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Restaurant Menu'),
+      ),
+      body: MenuList(),
+    );
+  }
+}
+
+class MenuList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        MenuItem(
+          name: 'Burger',
+          description: 'Delicious beef burger with cheese and vegetables',
+          price: '\$8.99',
+          imageAsset: 'assets/burger.jpg',
+        ),
+        MenuItem(
+          name: 'Pizza',
+          description: 'Margherita pizza with tomato, mozzarella, and basil',
+          price: '\$10.99',
+          imageAsset: 'assets/pizza.jpg',
+        ),
+        // Add more menu items here
+      ],
+    );
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  final String name;
+  final String description;
+  final String price;
+  final String imageAsset;
+
+  MenuItem({
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.imageAsset,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      margin: EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Image.asset(
+            imageAsset,
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  description,
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Price: $price',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
